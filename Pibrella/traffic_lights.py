@@ -1,3 +1,6 @@
+import pibrella
+from time import sleep
+
 def traffic_lights():
     pibrella.light.off()
     pibrella.light.red.on()
