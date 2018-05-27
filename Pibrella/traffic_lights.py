@@ -3,7 +3,7 @@ from time import sleep
 
 SEQUENCE = [RED, RED_AMBER, GREEN, AMBER] = range(4)
 
-TIMING = {
+TIMINGS = {
     RED: 3,
     RED_AMBER: 4,
     GREEN: 6,
