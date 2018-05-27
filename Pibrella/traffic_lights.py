@@ -10,11 +10,28 @@ TIMING = {
     AMBER: 4
 }
 
+def action_red():
+    pibrella.light.off()
+    pibrella.light.red.on()
+
+def action_red_amber():
+    pibrella.light.off()
+    pibrella.light.red.on()
+    pibrella.light.amber.on()
+
+def action_green():
+    pibrella.light.off()
+    pibrella.light.green.on()
+
+def action_amber():
+    pibrella.light.off()
+    pibrella.light.amber.blink(0.5, 0.5)
+
 ACTIONS = {
-    RED: pibrella.light.red.on,
-    RED_AMBER: lambda: pibrella.light.off() && pibrella.light.red.on() && pibrella.light.amber.on(),
-    GREEN: pibrella.light.green.on,
-    AMBER: pibrella.light.amber.blink(0.5,0.5)
+    RED: action_red,
+    RED_AMBER: action_red_amber,
+    GREEN: action_green,
+    AMBER: action_amber
 }
 
 def traffic_lights():
