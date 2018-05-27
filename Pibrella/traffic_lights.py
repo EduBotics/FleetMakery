@@ -23,9 +23,13 @@ def action_green():
     pibrella.light.off()
     pibrella.light.green.on()
 
-def action_amber():
+def action_flashing_amber():
     pibrella.light.off()
     pibrella.light.amber.blink(0.5, 0.5)
+
+def action_amber():
+    pibrella.light.off()
+    pibrella.light.amber.on()
 
 ACTIONS = {
     RED: action_red,
