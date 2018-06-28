@@ -1,81 +1,81 @@
 % Makery Sign-up Sheets
-\documentclass{article}
+\documentclass{{article}}
 
-\usepackage[landscape]{geometry}
-\usepackage{array}
-\usepackage{hyphenat}
-\usepackage{xspace}
-\usepackage{amssymb}
-\usepackage{pifont}
-\usepackage{forloop}
+\usepackage[landscape]{{geometry}}
+\usepackage{{array}}
+\usepackage{{hyphenat}}
+\usepackage{{xspace}}
+\usepackage{{amssymb}}
+\usepackage{{pifont}}
+\usepackage{{forloop}}
 
-\newcommand{\cmark}{\ding{51}}%
-\newcommand{\xmark}{\ding{55}}%
+\newcommand{{\cmark}}{{\ding{{51}}}}%
+\newcommand{{\xmark}}{{\ding{{55}}}}%
 
-\newcommand{\theeventname}{XX_EVENTNAME_XX\xspace}%
-\newcommand{\thedate}{XX_DATE_XX\xspace}%
-\newcommand{\thedotw}{XX_DOW_XX\xspace}%
-\newcommand{\thestarttime}{XX_STARTTIME_XX\xspace}%
-\newcommand{\theendtime}{XX_ENDTIME_XX\xspace}%
+\newcommand{{\theeventname}}{{{eventname}\xspace}}%
+\newcommand{{\thedate}}{{{date}\xspace}}%
+\newcommand{{\thedotw}}{{{dow}\xspace}}%
+\newcommand{{\thestarttime}}{{{starttime}\xspace}}%
+\newcommand{{\theendtime}}{{{endtime}\xspace}}%
 
-\newcommand{\thecost}{£XX_COST_XX\xspace}%
-\newcommand{\theplu}{XX_PLU_XX\xspace}%
-\newcommand{\thedescription}{XX_DESCRIPTION_XX\xspace}%
-\newcommand{\theagerange}{XX_AGERANGE_XX\xspace}%
-\newcommand{\thenumberslots}{XX_NUMSLOTS_XX}%
+\newcommand{{\thecost}}{{£{cost}\xspace}}%
+\newcommand{{\theplu}}{{{plu}\xspace}}%
+\newcommand{{\thedescription}}{{{description}\xspace}}%
+\newcommand{{\theagerange}}{{{agerange}\xspace}}%
+\newcommand{{\thenumberslots}}{{{numslots}}}%
 
 
-\newcounter{loopcounter}
+\newcounter{{loopcounter}}
 
-\newcounter{numofrows}
-\setcounter{numofrows}{\thenumberslots}
+\newcounter{{numofrows}}
+\setcounter{{numofrows}}{{\thenumberslots}}
 
-\newcounter{numofwlrows}
-\setcounter{numofwlrows}{5}
+\newcounter{{numofwlrows}}
+\setcounter{{numofwlrows}}{{5}}
 
-\begin{document}
+\begin{{document}}
 
-{\Large EVENT: \theeventname}
+{{\Large EVENT: \theeventname}}
 \vskip 1em
-{\large Date: \thedotw \textbullet \thedate \textbullet \thestarttime-\theendtime }
+{{\large Date: \thedotw \textbullet \thedate \textbullet \thestarttime-\theendtime }}
 \vskip 1em
-{\large \thecost PLU: \theplu }
+{{\large \thecost PLU: \theplu }}
 \vskip 1em
-{\large Description: \thedescription }
+{{\large Description: \thedescription }}
 \vskip 1em
-{\large Age Guide: \theagerange }
+{{\large Age Guide: \theagerange }}
 \vskip 1em
-\renewcommand{\arraystretch}{2.2}
-\begin{tabular}{|r|b{1.4cm}|b{5cm}|b{4cm}|b{2cm}|b{3cm}|b{2cm}|}
+\renewcommand{{\arraystretch}}{{2.2}}
+\begin{{tabular}}{{|r|b{{1.4cm}}|b{{5cm}}|b{{4cm}}|b{{2cm}}|b{{3cm}}|b{{2cm}}|}}
 \hline
-No.&\center{Present? \cmark\textbar\xmark}&\center{Name}&\center{Contact Details}&\center{\nohyphens{Library Card \#}}&\center{\nohyphens{Access Requirements}}&Date Paid \\
+No.&\center{{Present? \cmark\textbar\xmark}}&\center{{Name}}&\center{{Contact Details}}&\center{{\nohyphens{{Library Card \#}}}}&\center{{\nohyphens{{Access Requirements}}}}&Date Paid \\
 \hline
-  \forloop{loopcounter}{1}{\value{loopcounter} < \numexpr\value{numofrows}}{%
-    \number\value{loopcounter} &&&&&& \\
+  \forloop{{loopcounter}}{{1}}{{\value{{loopcounter}} < \numexpr\value{{numofrows}}}}{{%
+    \number\value{{loopcounter}} &&&&&& \\
     \hline
-  }
-  \number\value{loopcounter} &&&&&& \\
+  }}
+  \number\value{{loopcounter}} &&&&&& \\
 \hline
-\end{tabular}
+\end{{tabular}}
 \vfill
 PTO for waiting list
 \vfill
 \break
 
-{\Large Waiting List}
+{{\Large Waiting List}}
 
 \vskip 2em
 
-\begin{tabular}{|c|b{5cm}|b{5cm}|b{6cm}|}
+\begin{{tabular}}{{|c|b{{5cm}}|b{{5cm}}|b{{6cm}}|}}
 \hline
 No.&Date&Name&Contact Details\\
 \hline
-  \forloop{loopcounter}{1}{\value{loopcounter} < \numexpr\value{numofrows}}{%
-    \number\value{loopcounter} &&& \\
+  \forloop{{loopcounter}}{{1}}{{\value{{loopcounter}} < \numexpr\value{{numofrows}}}}{{%
+    \number\value{{loopcounter}} &&& \\
     \hline
-  }
-  \number\value{loopcounter} &&& \\
+  }}
+  \number\value{{loopcounter}} &&& \\
 \hline
-\end{tabular}
+\end{{tabular}}
 
-\end{document}
+\end{{document}}
