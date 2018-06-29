@@ -1,0 +1,81 @@
+% Makery Sign-up Sheets
+\documentclass{article}
+
+\usepackage[landscape]{geometry}
+\usepackage{array}
+\usepackage{hyphenat}
+\usepackage{xspace}
+\usepackage{amssymb}
+\usepackage{pifont}
+\usepackage{forloop}
+
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+
+\newcommand{\theeventname}{Raspberry Py (Python)\xspace}%
+\newcommand{\thedate}{2/7/2018\xspace}%
+\newcommand{\thedotw}{Mon\xspace}%
+\newcommand{\thestarttime}{15:45\xspace}%
+\newcommand{\theendtime}{17:45\xspace}%
+
+\newcommand{\thecost}{£8\xspace}%
+\newcommand{\theplu}{\xspace}%
+\newcommand{\thedescription}{A chance to learn or improve your Python programming!\xspace}%
+\newcommand{\theagerange}{8-13\xspace}%
+\newcommand{\thenumberslots}{8}%
+
+
+\newcounter{loopcounter}
+
+\newcounter{numofrows}
+\setcounter{numofrows}{\thenumberslots}
+
+\newcounter{numofwlrows}
+\setcounter{numofwlrows}{5}
+
+\begin{document}
+
+{\Large EVENT: \theeventname}
+\vskip 1em
+{\large Date: \thedotw\hfill\textbullet\hfill\thedate\hfill\textbullet\hfill\thestarttime-\theendtime\hfill }
+\vskip 1em
+{\large \thecost PLU: \theplu }
+\vskip 1em
+{\large Description: \thedescription }
+\vskip 1em
+{\large Age Guide: \theagerange }
+\vskip 1em
+\renewcommand{\arraystretch}{2.2}
+\begin{tabular}{|r|b{1.4cm}|b{5cm}|b{4cm}|b{2cm}|b{3cm}|b{2cm}|}
+\hline
+No.&\center{Present? \cmark\textbar\xmark}&\center{Name}&\center{Contact Details}&\center{\nohyphens{Library Card \#}}&\center{\nohyphens{Access Requirements}}&Date Paid \\
+\hline
+  \forloop{loopcounter}{1}{\value{loopcounter} < \numexpr\value{numofrows}}{%
+    \number\value{loopcounter} &&&&&& \\
+    \hline
+  }
+  \number\value{loopcounter} &&&&&& \\
+\hline
+\end{tabular}
+\vfill
+PTO for waiting list
+\vfill
+\break
+
+{\Large Waiting List}
+
+\vskip 2em
+
+\begin{tabular}{|c|b{5cm}|b{5cm}|b{6cm}|}
+\hline
+No.&Date&Name&Contact Details\\
+\hline
+  \forloop{loopcounter}{1}{\value{loopcounter} < \numexpr\value{numofwlrows}}{%
+    \number\value{loopcounter} &&& \\
+    \hline
+  }
+  \number\value{loopcounter} &&& \\
+\hline
+\end{tabular}
+
+\end{document}

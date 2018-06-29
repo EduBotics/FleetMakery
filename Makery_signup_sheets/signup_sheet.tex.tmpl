@@ -37,7 +37,7 @@
 
 {{\Large EVENT: \theeventname}}
 \vskip 1em
-{{\large Date: \thedotw \textbullet \thedate \textbullet \thestarttime-\theendtime }}
+{{\large Date: \thedotw\hfill\textbullet\hfill\thedate\hfill\textbullet\hfill\thestarttime-\theendtime\hfill }}
 \vskip 1em
 {{\large \thecost PLU: \theplu }}
 \vskip 1em
@@ -70,7 +70,7 @@ PTO for waiting list
 \hline
 No.&Date&Name&Contact Details\\
 \hline
-  \forloop{{loopcounter}}{{1}}{{\value{{loopcounter}} < \numexpr\value{{numofrows}}}}{{%
+  \forloop{{loopcounter}}{{1}}{{\value{{loopcounter}} < \numexpr\value{{numofwlrows}}}}{{%
     \number\value{{loopcounter}} &&& \\
     \hline
   }}
