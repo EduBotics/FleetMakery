@@ -7,104 +7,102 @@ import datetime
 
 class SignupSheet(object):
     def __init__(self):
-        self._params = None
-        if False:
-            {
-                "eventname": None,
-                "date": None,
-                "dow": None,
-                "starttime": None,
-                "endtime": None,
-                "cost": None,
-                "plu": None,
-                "description": None,
-                "agerange": None,
-                "numslots": None,
-            }
+        self._params = {
+            "eventname": None,
+            "date": None,
+            "dow": None,
+            "starttime": None,
+            "endtime": None,
+            "cost": None,
+            "plu": None,
+            "description": None,
+            "agerange": None,
+            "numslots": None,
+        }
         self._tempate = None
         self._signup_sheet = None
         self._tex_filename = None
 
     @property
     def eventname(self):
-    	return self._params["eventname"]
+        return self._params["eventname"]
 
     @eventname.setter
-    def eventname(value):
-    	self._params["eventname"] = value
+    def eventname(self, value):
+        self._params["eventname"] = value
 
     @property
     def date(self):
-    	return self._params["date"]
+        return self._params["date"]
 
     @date.setter
-    def date(value):
-    	self._params["date"] = value
-    	
+    def date(self, value):
+        self._params["date"] = value
+
     @property
     def dow(self):
-    	return self._params["dow"]
+        return self._params["dow"]
 
     @dow.setter
-    def dow(value):
-    	self._params["dow"] = value
-    	
+    def dow(self, value):
+        self._params["dow"] = value
+
     @property
     def starttime(self):
-    	return self._params["starttime"]
+        return self._params["starttime"]
 
     @starttime.setter
-    def starttime(value):
-    	self._params["starttime"] = value
-    	
+    def starttime(self, value):
+        self._params["starttime"] = value
+
     @property
     def endtime(self):
-    	return self._params["endtime"]
+        return self._params["endtime"]
 
     @endtime.setter
-    def endtime(value):
-    	self._params["endtime"] = value
-    	
+    def endtime(self, value):
+        self._params["endtime"] = value
+
     @property
     def cost(self):
-    	return self._params["cost"]
+        return self._params["cost"]
 
     @cost.setter
-    def cost(value):
-    	self._params["cost"] = value
-    	
+    def cost(self, value):
+        self._params["cost"] = value
+
     @property
     def plu(self):
-    	return self._params["plu"]
+        return self._params["plu"]
 
     @plu.setter
-    def plu(value):
-    	self._params["plu"] = value
-    	
+    def plu(self, value):
+        self._params["plu"] = value
+
     @property
     def description(self):
-    	return self._params["description"]
+        return self._params["description"]
 
     @description.setter
-    def description(value):
-    	self._params["description"] = value
-    	
+    def description(self, value):
+        self._params["description"] = value
+
     @property
     def agerange(self):
-    	return self._params["agerange"]
+        return self._params["agerange"]
 
     @agerange.setter
-    def agerange(value):
-    	self._params["agerange"] = value
-    	
+    def agerange(self, value):
+        self._params["agerange"] = value
+
     @property
     def numslots(self):
-    	return self._params["numslots"]
+        return self._params["numslots"]
 
     @numslots.setter
-    def numslots(value):
-    	self._params["numslots"] = value
-	    	
+    def numslots(self, value):
+        self._params["numslots"] = value
+
     @property
     def template(self):
         if (self._template is None):
