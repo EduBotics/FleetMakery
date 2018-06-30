@@ -1,4 +1,6 @@
 """ Generate signup sheet """
+# -*- coding: utf-8 -*-
+
 import subprocess
 import datetime
 
@@ -23,6 +25,86 @@ class SignupSheet(object):
         self._signup_sheet = None
         self._tex_filename = None
 
+    @property
+    def eventname(self):
+    	return self._params["eventname"]
+
+    @eventname.setter
+    def eventname(value):
+    	self._params["eventname"] = value
+
+    @property
+    def date(self):
+    	return self._params["date"]
+
+    @date.setter
+    def date(value):
+    	self._params["date"] = value
+    	
+    @property
+    def dow(self):
+    	return self._params["dow"]
+
+    @dow.setter
+    def dow(value):
+    	self._params["dow"] = value
+    	
+    @property
+    def starttime(self):
+    	return self._params["starttime"]
+
+    @starttime.setter
+    def starttime(value):
+    	self._params["starttime"] = value
+    	
+    @property
+    def endtime(self):
+    	return self._params["endtime"]
+
+    @endtime.setter
+    def endtime(value):
+    	self._params["endtime"] = value
+    	
+    @property
+    def cost(self):
+    	return self._params["cost"]
+
+    @cost.setter
+    def cost(value):
+    	self._params["cost"] = value
+    	
+    @property
+    def plu(self):
+    	return self._params["plu"]
+
+    @plu.setter
+    def plu(value):
+    	self._params["plu"] = value
+    	
+    @property
+    def description(self):
+    	return self._params["description"]
+
+    @description.setter
+    def description(value):
+    	self._params["description"] = value
+    	
+    @property
+    def agerange(self):
+    	return self._params["agerange"]
+
+    @agerange.setter
+    def agerange(value):
+    	self._params["agerange"] = value
+    	
+    @property
+    def numslots(self):
+    	return self._params["numslots"]
+
+    @numslots.setter
+    def numslots(value):
+    	self._params["numslots"] = value
+	    	
     @property
     def template(self):
         if (self._template is None):
