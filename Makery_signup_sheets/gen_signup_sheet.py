@@ -3,6 +3,9 @@
 
 import subprocess
 import datetime
+import codecs
+
+from pylatexenc.latexencode import utf8tolatex
 
 
 class SignupSheet(object):
@@ -19,7 +22,7 @@ class SignupSheet(object):
             "agerange": None,
             "numslots": None,
         }
-        self._tempate = None
+        self._template = None
         self._signup_sheet = None
         self._tex_filename = None
 
@@ -121,12 +124,16 @@ class SignupSheet(object):
             self.generate_signupsheet()
         return self._signup_sheet
 
+    @signup_sheet.setter
+    def signup_sheet(self, value):
+    	self._signup_sheet = value
+
     @property
     def tex_filename(self):
         if self._tex_filename is None:
             self._tex_filename = "{}_signup_sheet.tex".format(
                 datetime.datetime.strptime(
-                    self.params["date"],
+                    self.date,
                     "%d/%m/%Y"
                 ).strftime("%Y%m%d")
             )
@@ -135,7 +142,7 @@ class SignupSheet(object):
     def read_template(self):
         # read in signup_sheet.tex.tmpl
         filename = "signup_sheet.tex.tmpl"
-        with open(filename) as template_file:
+        with codecs.open(filename, encoding='utf-8') as template_file:
             self._template = template_file.read()
 
     def set_test_params(self):
@@ -156,14 +163,19 @@ class SignupSheet(object):
         }
 
     def generate_signupsheet(self):
-        self.signup_sheet = self.template.format(**self.params)
+    	latex_params = {}
+    	for name, param in self.params.iteritems():
+    		latex_params[name] = utf8tolatex(param)
+
+        self.signup_sheet = self.template.format(**latex_params)
 
     def generate_tex(self):
-        with open(self.tex_filename, "w") as tex_f:
+        with codecs.open(self.tex_filename, encoding='utf-8', mode="w") as tex_f:
             tex_f.write(self.signup_sheet)
 
     def generate_pdf(self):
         # call pdflatex to convert it to pdf
+        self.generate_tex()
         cmd = ["pdflatex", self.tex_filename]
         subprocess.call(cmd)
 
