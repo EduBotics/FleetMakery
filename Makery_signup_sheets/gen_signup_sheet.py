@@ -126,7 +126,7 @@ class SignupSheet(object):
 
     @signup_sheet.setter
     def signup_sheet(self, value):
-    	self._signup_sheet = value
+        self._signup_sheet = value
 
     @property
     def tex_filename(self):
@@ -163,14 +163,18 @@ class SignupSheet(object):
         }
 
     def generate_signupsheet(self):
-    	latex_params = {}
-    	for name, param in self.params.iteritems():
-    		latex_params[name] = utf8tolatex(param)
+        latex_params = {}
+        for name, param in self.params.iteritems():
+            latex_params[name] = utf8tolatex(param)
 
         self.signup_sheet = self.template.format(**latex_params)
 
     def generate_tex(self):
-        with codecs.open(self.tex_filename, encoding='utf-8', mode="w") as tex_f:
+        with codecs.open(
+            self.tex_filename,
+            encoding='utf-8',
+            mode="w"
+        ) as tex_f:
             tex_f.write(self.signup_sheet)
 
     def generate_pdf(self):
