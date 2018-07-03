@@ -3,6 +3,8 @@
 
 from gen_signup_sheet import SignupSheet, Event
 
+DEBUG = False
+
 event_types = {
     "base": Event({"cost": 8})
 }
@@ -109,18 +111,34 @@ event_types_overrides = {
 
 retry = []
 for name, override in event_types_overrides.iteritems():
-    print "Overriding {} with {} -> {}\n".format(override[0], override[1], name)
+    if DEBUG:
+        print "Overriding {} with {} -> {}\n".format(
+            override[0],
+            override[1],
+            name
+        )
     try:
-        event_types[name] = Event(orig=event_types[override[0]], params=override[1])
+        event_types[name] = Event(
+            orig=event_types[override[0]],
+            params=override[1]
+        )
     except KeyError:
         retry.append(name)
 
 while len(retry):
     name = retry.pop(0)
     override = event_types_overrides[name]
-    print "Overriding {} with {} -> {}\n".format(override[0], override[1], name)
+    if DEBUG:
+        print "Overriding {} with {} -> {}\n".format(
+            override[0],
+            override[1],
+            name
+        )
     try:
-        event_types[name] = Event(orig=event_types[override[0]], params=override[1])
+        event_types[name] = Event(
+            orig=event_types[override[0]],
+            params=override[1]
+        )
     except AttributeError as err:
         print "\t{} : Error: {}\n".format(name, err)
         if len(retry) > 1:
@@ -128,7 +146,7 @@ while len(retry):
 
 the_events = [
     {
-        "name": "20180723_robotics_summer", 
+        "name": "20180723_robotics_summer",
         "bases": ["summer_weekday", "robotics"],
         "overrides": {
             "eventname": "Summer Session: Lego Robotics",
@@ -137,7 +155,7 @@ the_events = [
         }
     },
     {
-        "name": "20180724_3ddesign", 
+        "name": "20180724_3ddesign",
         "bases": ["summer_tuesday", "3D Design"],
         "overrides": {
             "eventname": "Summer Session: 3D Design for 3D Printing",
@@ -146,7 +164,7 @@ the_events = [
         }
     },
     {
-        "name": "20180725_summer_scratch", 
+        "name": "20180725_summer_scratch",
         "bases": ["summer_weekday", "scratch"],
         "overrides": {
             "eventname": "Summer Session: Raspberry Pi Programming (Scratch)",
