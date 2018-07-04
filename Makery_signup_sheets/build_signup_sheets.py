@@ -3,7 +3,7 @@
 
 from gen_signup_sheet import SignupSheet, Event
 
-DEBUG = False
+DEBUG = True
 
 event_types = {
     "base": Event({"cost": 8})
@@ -11,7 +11,7 @@ event_types = {
 
 event_types_overrides = {
     "saturday": [
-        "base",
+        ["base"],
         {
             "dow": "Sat",
             "starttime": "12:00",
@@ -21,7 +21,7 @@ event_types_overrides = {
         }
     ],
     "afterschool": [
-        "base",
+        ["base"],
         {
             "starttime": "15:45",
             "endtime": "17:45",
@@ -30,7 +30,7 @@ event_types_overrides = {
         }
     ],
     "adult": [
-        "base",
+        ["base"],
         {
             "dow": "Tue",
             "starttime": "11:00",
@@ -39,8 +39,15 @@ event_types_overrides = {
             "plu": ""
         }
     ],
+    "summer_holidays_2018": [
+        ["base"],
+        {
+            "from_date": "23/7/2018",
+            "to_date": "2/9/2018",
+        }
+    ],
     "summer_tuesday": [
-        "base",
+        ["summer_holidays_2018"],
         {
             "starttime": "",
             "endtime": "",
@@ -49,7 +56,7 @@ event_types_overrides = {
         }
     ],
     "summer_weekday": [
-        "base",
+        ["summer_holidays_2018"],
         {
             "starttime": "15:00",
             "endtime": "17:00",
@@ -58,13 +65,13 @@ event_types_overrides = {
         }
     ],
     "summer_weekend": [
-        "saturday",
+        ["summer_holidays_2018", "saturday"],
         {
             "plu": "PLU7",
         }
     ],
     "scratch": [
-        "base",
+        ["base"],
         {
             "eventname": "Raspberry Pi Programming (Scratch)",
             "description": (
@@ -74,7 +81,7 @@ event_types_overrides = {
         }
     ],
     "python": [
-        "base",
+        ["base"],
         {
             "eventname": "Raspberry Pi Programming (Python)",
             "description": (
@@ -84,7 +91,7 @@ event_types_overrides = {
         }
     ],
     "robotics": [
-        "base",
+        ["base"],
         {
             "description": (
                 "Use our Lego EV3 Mindstorms robots to "
@@ -94,7 +101,7 @@ event_types_overrides = {
         }
     ],
     "3D Design": [
-        "base",
+        ["base"],
         {
             "eventname": "3D Design for 3D Printing",
             "description": (
@@ -106,43 +113,54 @@ event_types_overrides = {
             ),
             "numslots": 5,
         }
-    ]
+    ],
+    "animation": [
+        ["base"],
+        {
+            "eventname": "Stop Motion Animation",
+            "description": (
+                "Work together to create a storyboard and make it "
+                "come to life creating a stop motion animation film."
+            ),
+            "numslots": 8,
+        }
+    ],
 }
 
-retry = []
-for name, override in event_types_overrides.iteritems():
-    if DEBUG:
-        print "Overriding {} with {} -> {}\n".format(
-            override[0],
-            override[1],
-            name
-        )
-    try:
-        event_types[name] = Event(
-            orig=event_types[override[0]],
-            params=override[1]
-        )
-    except KeyError:
-        retry.append(name)
+deps = {
+    name: event_types_overrides[name][0]
+    for name in event_types_overrides.keys()
+}
+if DEBUG:
+    print "deps: {}".format(deps)
 
-while len(retry):
-    name = retry.pop(0)
-    override = event_types_overrides[name]
+depkeys = deps.keys()
+while len(depkeys):
+    dep_name = depkeys.pop(0)
+    item_dep = deps[dep_name]
     if DEBUG:
-        print "Overriding {} with {} -> {}\n".format(
-            override[0],
-            override[1],
-            name
-        )
-    try:
-        event_types[name] = Event(
-            orig=event_types[override[0]],
-            params=override[1]
-        )
-    except AttributeError as err:
-        print "\t{} : Error: {}\n".format(name, err)
-        if len(retry) > 1:
-            retry.append(name)
+        print [(dep, dep in event_types) for dep in item_dep]
+    if all([dep in event_types for dep in item_dep]):
+        name = dep_name
+        override = event_types_overrides[name]
+        if DEBUG:
+            print "Overriding {} with {} -> {}\n".format(
+                override[0],
+                override[1],
+                name
+            )
+            try:
+                event_types[name] = Event(
+                    orig=event_types[override[0]],
+                    params=override[1]
+                )
+            except TypeError:
+                event_types[name] = Event()
+                for base in override[0]:
+                    event_types[name].override(params=event_types[base].params)
+                event_types[name].override(override[1])
+    else:
+        depkeys.append(dep_name)
 
 the_events = [
     {
@@ -181,6 +199,34 @@ the_events = [
         }
     },
 
+    {
+        "name": "20180716",
+        "bases": ["afterschool", "python"],
+        "overrides": {
+            "date": "16/7/2018",
+        }
+    },
+    {
+        "name": "20180717",
+        "bases": ["adult", "python"],
+        "overrides": {
+            "date": "17/7/2018",
+        }
+    },
+    {
+        "name": "20180718",
+        "bases": ["afterschool", "animation"],
+        "overrides": {
+            "date": "18/7/2018",
+        }
+    },
+    {
+        "name": "20180719",
+        "bases": ["afterschool", "scratch"],
+        "overrides": {
+            "date": "19/7/2018",
+        }
+    },
 ]
 
 

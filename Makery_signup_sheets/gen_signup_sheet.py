@@ -8,11 +8,13 @@ import copy
 
 from pylatexenc.latexencode import utf8tolatex
 
+DEBUG = True
+
 
 class Event(object):
     def __init__(self, params=None, orig=None):
         if orig is not None:
-           self.__dict__ = copy.deepcopy(orig.__dict__)
+            self.__dict__ = copy.deepcopy(orig.__dict__)
         else:
             self._cost = 8
             self._eventname = None
@@ -54,6 +56,12 @@ class Event(object):
     @date.setter
     def date(self, value):
         self._date = value
+        self._dow = datetime.datetime.strptime(
+            self.date,
+            "%d/%m/%Y"
+        ).strftime("%a")
+        if DEBUG:
+            print "Setting dow to {} from date {}".format(self.dow, self.date)
 
     @property
     def dow(self):
@@ -119,9 +127,28 @@ class Event(object):
     def numslots(self, value):
         self._numslots = value
 
+    @property
+    def from_date(self):
+        return self._from_date
+
+    @from_date.setter
+    def from_date(self, val):
+        self._from_date = val
+
+    @property
+    def to_date(self):
+        return self._to_date
+
+    @to_date.setter
+    def to_date(self, val):
+        self._to_date = val
+
     def override(self, params):
         for key, val in params.iteritems():
-            setattr(self, "_" + key, val)
+            if DEBUG:
+                print u"setting {} => {}".format(key, val)
+            type(self).__dict__[key].fset(self, val)
+            # setattr(self, "_" + key, val)
 
 
 class SignupSheet(object):
@@ -151,6 +178,11 @@ class SignupSheet(object):
 
     @property
     def dow(self):
+        if self.params.dow is None:
+            self.params.dow = datetime.datetime.strptime(
+                self.date,
+                "%d/%m/%Y"
+            ).strftime("%a")
         return self.params.dow
 
     @dow.setter
