@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """Front end to generate signup sheets from data"""
 
+import sys
 import json
 import codecs
 from gen_signup_sheet import SignupSheet
@@ -141,6 +142,8 @@ class EventTypes(object):
             for name in self.event_types_overrides.keys()
         }
         depkeys = deps.keys()
+        if DEBUG:
+            print "depkeys: {}".format(depkeys)
         while len(depkeys):
             dep_name = depkeys.pop(0)
             item_dep = deps[dep_name]
@@ -155,18 +158,18 @@ class EventTypes(object):
                         override[1],
                         name
                     )
-                    try:
-                        self.event_types[name] = Event(
-                            orig=self.event_types[override[0]],
-                            params=override[1]
+                try:
+                    self.event_types[name] = Event(
+                        orig=self.event_types[override[0]],
+                        params=override[1]
+                    )
+                except TypeError:
+                    self.event_types[name] = Event()
+                    for base in override[0]:
+                        self.event_types[name].override(
+                            params=self.event_types[base].params
                         )
-                    except TypeError:
-                        self.event_types[name] = Event()
-                        for base in override[0]:
-                            self.event_types[name].override(
-                                params=self.event_types[base].params
-                            )
-                        self.event_types[name].override(override[1])
+                    self.event_types[name].override(override[1])
             else:
                 depkeys.append(dep_name)
 
@@ -186,81 +189,84 @@ def generate_signup_sheets(the_events):
 
 
 def gen_signup_sheets_from_json(json_file):
-    with codecs.open(json_file, 'r') as json_f:
+    with codecs.open(json_file, encoding='utf-8') as json_f:
         the_events = json.load(json_f)
     generate_signup_sheets(the_events)
 
 
 if __name__ == '__main__':
-    the_events = [
-        {
-            "name": "20180723_robotics_summer",
-            "bases": ["summer_weekday", "robotics"],
-            "overrides": {
-                "eventname": "Summer Session: Lego Robotics",
-                "date": "23/7/2018",
-                "dow": "Mon",
-            }
-        },
-        {
-            "name": "20180724_3ddesign",
-            "bases": ["summer_tuesday", "3D Design"],
-            "overrides": {
-                "eventname": "Summer Session: 3D Design for 3D Printing",
-                "date": "24/7/2018",
-                "dow": "Tue",
-            }
-        },
-        {
-            "name": "20180725_summer_scratch",
-            "bases": ["summer_weekday", "scratch"],
-            "overrides": {
-                "eventname": (
-                    "Summer Session: Raspberry Pi Programming (Scratch)"
-                ),
-                "date": "25/7/2018",
-                "dow": "Wed",
-            }
-        },
-        {
-            "name": "20180728_summer_python",
-            "bases": ["summer_weekend", "python"],
-            "overrides": {
-                "eventname": (
-                    "Summer Session: Raspberry Pi Programming (Python)"
-                ),
-                "date": "28/7/2018",
-            }
-        },
+    if len(sys.argv):
+        gen_signup_sheets_from_json(sys.argv[1])
+    else: 
+        the_events = [
+            {
+                "name": "20180723_robotics_summer",
+                "bases": ["summer_weekday", "robotics"],
+                "overrides": {
+                    "eventname": "Summer Session: Lego Robotics",
+                    "date": "23/7/2018",
+                    "dow": "Mon",
+                }
+            },
+            {
+                "name": "20180724_3ddesign",
+                "bases": ["summer_tuesday", "3D Design"],
+                "overrides": {
+                    "eventname": "Summer Session: 3D Design for 3D Printing",
+                    "date": "24/7/2018",
+                    "dow": "Tue",
+                }
+            },
+            {
+                "name": "20180725_summer_scratch",
+                "bases": ["summer_weekday", "scratch"],
+                "overrides": {
+                    "eventname": (
+                        "Summer Session: Raspberry Pi Programming (Scratch)"
+                    ),
+                    "date": "25/7/2018",
+                    "dow": "Wed",
+                }
+            },
+            {
+                "name": "20180728_summer_python",
+                "bases": ["summer_weekend", "python"],
+                "overrides": {
+                    "eventname": (
+                        "Summer Session: Raspberry Pi Programming (Python)"
+                    ),
+                    "date": "28/7/2018",
+                }
+            },
 
-        {
-            "name": "20180716",
-            "bases": ["afterschool", "python"],
-            "overrides": {
-                "date": "16/7/2018",
-            }
-        },
-        {
-            "name": "20180717",
-            "bases": ["adult", "python"],
-            "overrides": {
-                "date": "17/7/2018",
-            }
-        },
-        {
-            "name": "20180718",
-            "bases": ["afterschool", "animation"],
-            "overrides": {
-                "date": "18/7/2018",
-            }
-        },
-        {
-            "name": "20180719",
-            "bases": ["afterschool", "scratch"],
-            "overrides": {
-                "date": "19/7/2018",
-            }
-        },
-    ]
+            {
+                "name": "20180716",
+                "bases": ["afterschool", "python"],
+                "overrides": {
+                    "date": "16/7/2018",
+                }
+            },
+            {
+                "name": "20180717",
+                "bases": ["adult", "python"],
+                "overrides": {
+                    "date": "17/7/2018",
+                }
+            },
+            {
+                "name": "20180718",
+                "bases": ["afterschool", "animation"],
+                "overrides": {
+                    "date": "18/7/2018",
+                }
+            },
+            {
+                "name": "20180719",
+                "bases": ["afterschool", "scratch"],
+                "overrides": {
+                    "date": "19/7/2018",
+                }
+            },
+        ]
 
-    generate_signup_sheets(the_events)
+        generate_signup_sheets(the_events)
