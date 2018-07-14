@@ -3,6 +3,7 @@
 import subprocess
 import datetime
 import codecs
+import os
 from event import Event
 
 from pylatexenc.latexencode import utf8tolatex
@@ -140,8 +141,11 @@ class SignupSheet(object):
         return self._tex_filename
 
     def read_template(self):
-        # read in signup_sheet.tex.tmpl
-        filename = "signup_sheet.tex.tmpl"
+        """ Read in signup_sheet.tex.tmpl """
+        filename = os.path.join(os.path.dirname(
+            os.path.abspath(__file__)),
+            "signup_sheet.tex.tmpl"
+        )
         with codecs.open(filename, encoding='utf-8') as template_file:
             self._template = template_file.read()
 
