@@ -1,0 +1,170 @@
+[
+    {
+        "name": "20180723_robotics_summer",
+        "bases": ["summer_weekday", "robotics"],
+        "overrides": {
+            "eventname": "Summer Session: Lego Robotics",
+            "date": "23/7/2018"
+        }
+    },
+    {
+        "name": "20180724_3DDesign_summer",
+        "bases": ["summer_weekday", "3D Design"],
+        "overrides": {
+            "eventname": "Summer Session: 3D Design for 3D Printing",
+            "date": "24/7/2018"
+        }
+    },
+    {
+        "name": "20180725_scratch_summer",
+        "bases": ["summer_weekday", "scratch"],
+        "overrides": {
+            "eventname": "Summer Session: Raspberry Pi Programming (Scratch)",
+            "date": "25/7/2018"
+        }
+    },
+    {
+        "name": "20180728_Python_summer",
+        "bases": ["summer_weekend", "python"],
+        "overrides": {
+            "eventname": "Summer Session: Raspberry Pi Programming (Python)",
+            "date": "28/7/2018"
+        }
+    },
+    {
+        "name": "20180730_3DDesign_summer",
+        "bases": ["summer_weekday", "3D Design"],
+        "overrides": {
+            "eventname": "Summer Session: 3D Design for 3D Printing",
+            "date": "30/7/2018"
+        }
+    },
+    {
+        "name": "20180731_scratch_summer",
+        "bases": ["summer_weekday", "scratch"],
+        "overrides": {
+            "eventname": "Summer Session: Raspberry Pi Programming (Scratch)",
+            "date": "31/7/2018"
+        }
+    },
+    {
+        "name": "20180801_python_summer",
+        "bases": ["summer_weekday", "python"],
+        "overrides": {
+            "eventname": "Summer Session: Raspberry Pi Programming (Python)",
+            "date": "1/8/2018"
+        }
+    },
+    {
+        "name": "20180802_summer",
+        "bases": ["summer_weekday", "animation"],
+        "overrides": {
+            "eventname": "Summer Session: Stop Motion Animation",
+            "date": "2/8/2018"
+        }
+    },
+    {
+        "name": "20180806_robotics_summer",
+        "bases": ["summer_weekday", "scratch"],
+        "overrides": {
+            "eventname": "Summer Session: Raspberry Pi Programming (Scratch)",
+            "date": "6/8/2018"
+        }
+    },
+    {
+        "name": "20180807_summer",
+        "bases": ["summer_weekday", "python"],
+        "overrides": {
+            "eventname": "Summer Session: Raspberry Pi Programming (Python)",
+            "date": "7/8/2018"
+        }
+    },
+    {
+        "name": "20180808_summer",
+        "bases": ["summer_weekday", "animation"],
+        "overrides": {
+            "eventname": "Summer Session: Stop Motion Animation",
+            "date": "8/8/2018"
+        }
+    },
+    {
+        "name": "20180811_summer",
+        "bases": ["summer_weekend", "scratch"],
+        "overrides": {
+            "eventname": "Summer Session: Raspberry Pi Programming (Scratch)",
+            "date": "11/8/2018"
+        }
+    },
+    {
+        "name": "20180813_summer",
+        "bases": ["summer_weekday", "python"],
+        "overrides": {
+            "eventname": "Summer Session: Raspberry Pi Programming (Python)",
+            "date": "13/8/2018"
+        }
+    },
+    {
+        "name": "20180814_summer",
+        "bases": ["summer_weekday", "robotics"],
+        "overrides": {
+            "eventname": "Summer Session: Lego Robotics",
+            "date": "14/8/2018"
+        }
+    },
+    {
+        "name": "20180816_summer",
+        "bases": ["summer_weekday", "python"],
+        "overrides": {
+            "eventname": "Summer Session: Raspberry Pi Programming (Python)",
+            "date": "15/8/2018"
+        }
+    },
+    {
+        "name": "20180820_summer",
+        "bases": ["summer_weekday", "robotics"],
+        "overrides": {
+            "eventname": "Summer Session: Lego Robotics",
+            "date": "20/8/2018"
+        }
+    },
+    {
+        "name": "20180821_summer",
+        "bases": ["summer_weekday", "3D Design"],
+        "overrides": {
+            "eventname": "Summer Session: 3D Design for 3D Printing",
+            "date": "21/8/2018"
+        }
+    },
+    {
+        "name": "20180825_summer",
+        "bases": ["summer_weekend", "animation"],
+        "overrides": {
+            "eventname": "Summer Session: Stop Motion Animation",
+            "date": "25/8/2018"
+        }
+    },
+    {
+        "name": "20180827_summer",
+        "bases": ["summer_weekday", "3D Design"],
+        "overrides": {
+            "eventname": "Summer Session: 3D Design for 3D Printing",
+            "date": "27/8/2018"
+        }
+    },
+    {
+        "name": "20180828_summer",
+        "bases": ["summer_weekday", "scratch"],
+        "overrides": {
+            "eventname": "Summer Session: Raspberry Pi Programming (Scratch)",
+            "date": "28/8/2018"
+        }
+    },
+    {
+        "name": "20180830_summer",
+        "bases": ["summer_weekday", "robotics"],
+        "overrides": {
+            "eventname": "Summer Session: Lego Robotics",
+            "date": "30/8/2018"
+        }
+    }
+]
